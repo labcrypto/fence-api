@@ -1,12 +1,15 @@
 module ir.ntnaeem.gate.transport {
-  struct AcceptReport {
+  enum TransportMessageStatus {
+    0 = Unknown;
+    200 = Enqueued;
+    201 = TransportMessageNotFound;
+    202 = WaitingForGettingProcessed;
+  };
+  struct EnqueueReport {
     int16 statusCode ord(1);
     uint64 masterMId ord(2);
     uint64 slaveMId ord(3);
     string errorMessage ord(4);
-  };
-  struct TransportMessageStatus {
-    int16 statusCode ord(1);
   };
   struct TransportMessage {
     uint64 masterMId ord(1);
@@ -18,8 +21,8 @@ module ir.ntnaeem.gate.transport {
     data content ord(7);
   };
   stateless service Transport {
-    list<AcceptReport> acceptSlaveMassages(list<TransportMessage> messages);
-    list<TransportMessage> retrieveSlaveMessages(uint32 slaveId);
+    list<EnqueueReport> enqueue(list<TransportMessage> messages);
+    list<TransportMessage> retrieve(uint32 slaveId);
     void ack(list<uint64> masterMIds);
     TransportMessageStatus getStatus(uint64 masterMId);
   };

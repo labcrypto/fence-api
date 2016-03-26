@@ -1,6 +1,10 @@
 module ir.ntnaeem.gate {
-  struct MessageStatus {
-    int16 statusCode ord(1);
+  enum MessageStatus {
+    0 = Unknown;
+    100 = EnqueuedForTransmission;
+    101 = Transmitted;
+    102 = TransmissionFailed;
+    103 = MessageNotFound;
   };
   struct Message {
     uint64 id ord(1);
@@ -10,9 +14,14 @@ module ir.ntnaeem.gate {
     data content ord(5);
   };
   stateless service Gate {
-    uint64 EnqueueMessage(Message message);
-    MessageStatus getMessageStatus(uint64 id);
-    bool hasMoreMessage(string label);
-    Message nextMessage(string label);
+    uint64 enqueue(Message message);
+    MessageStatus getStatus(uint64 id);
+    void discard(uint64 id);
+    bool hasMore(string label);
+    Message popNext(string label);
+    void ack(uint64 id);
+  };
+  stateless service GateMonitor {
+    string getCurrentStat();
   };
 };
