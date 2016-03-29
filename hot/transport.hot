@@ -2,6 +2,7 @@ module ir.ntnaeem.gate.transport {
   enum TransportMessageStatus {
     0 = Unknown;
     200 = Arrived;
+    201 = ArrivalFailed;
     201 = QueuedForProcess;
     204 = QueuedForRetrieval;
     203 = RetrievedButNotAcked;
@@ -9,9 +10,9 @@ module ir.ntnaeem.gate.transport {
     204 = RetrievalFailed;
   };
   struct EnqueueReport {
-    uint64 masterMId ord(2);
-    uint64 slaveMId ord(3);
-    TransportMessageStatus status ord(1);
+    uint64 masterMId ord(1);
+    uint64 slaveMId ord(2);
+    bool failed ord(3);
     string errorMessage ord(4);
   };
   struct TransportMessage {
