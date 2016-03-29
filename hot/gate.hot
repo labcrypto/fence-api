@@ -4,7 +4,9 @@ module ir.ntnaeem.gate {
     100 = EnqueuedForTransmission;
     101 = Transmitted;
     102 = TransmissionFailed;
-    103 = MessageNotFound;
+    103 = ReadyForPop;
+    104 = PoppedButNotAcked;
+    105 = PoppedAndAcked;
   };
   struct Message {
     uint64 id ord(1);
