@@ -2,10 +2,13 @@ module ir.ntnaeem.gate.transport {
   enum TransportMessageStatus {
     0 = Unknown;
     200 = Arrived;
-    201 = QueuedForProcess;
-    202 = QueuedForRetrieval;
-    203 = RetrievedButNotAcked;
-    204 = RetrievedAndAcked;
+    201 = ReadyForPop;
+    202 = PoppedButNotAcked;
+    203 = PoppedAndAcked;
+    204 = EnqueuedForTransmission;
+    205 = QueuedForRetrieval;
+    206 = RetrievedButNotAcked;
+    207 = RetrievedAndAcked;
   };
   struct EnqueueReport {
     uint64 masterMId ord(1);
@@ -26,7 +29,7 @@ module ir.ntnaeem.gate.transport {
     list<EnqueueReport> transmit(list<TransportMessage> messages);
     list<TransportMessage> retrieve(uint32 slaveId);
     void ack(list<uint64> masterMIds);
-    TransportMessageStatus getStatus(uint64 masterMId);
+    uint16 getStatus(uint64 masterMId);
   };
   stateless service TransportMonitor {
     string getCurrentStat();

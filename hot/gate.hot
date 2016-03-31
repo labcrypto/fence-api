@@ -17,7 +17,7 @@ module ir.ntnaeem.gate {
   };
   stateless service Gate {
     uint64 enqueue(Message message);
-    MessageStatus getStatus(uint64 id);
+    uint16 getStatus(uint64 id);
     void discard(uint64 id);
     bool hasMore(string label);
     Message popNext(string label);
