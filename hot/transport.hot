@@ -6,7 +6,7 @@ module ir.ntnaeem.gate.transport {
     202 = PoppedButNotAcked;
     203 = PoppedAndAcked;
     204 = EnqueuedForTransmission;
-    205 = QueuedForRetrieval;
+    205 = ReadyForRetrieval;
     206 = RetrievedButNotAcked;
     207 = RetrievedAndAcked;
   };
@@ -21,9 +21,8 @@ module ir.ntnaeem.gate.transport {
     uint32 slaveId ord(2);
     uint64 slaveMId ord(3);
     uint64 relMId ord(4);
-    string relLabel ord(5);
-    string label ord(6);
-    data content ord(7);
+    string label ord(5);
+    data content ord(6);
   };
   stateless service Transport {
     list<EnqueueReport> transmit(list<TransportMessage> messages);
