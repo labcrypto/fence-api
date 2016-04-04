@@ -9,15 +9,15 @@ namespace gate {
 namespace client {
   class SimpleGateClient : public GateClient {
   public:
-    SimpleGateClient(std::string host, uint16_t port)
-      : GateClient(host, port) {
+    SimpleGateClient()
+      : GateClient() {
     }
     virtual ~SimpleGateClient() {
     }
   public:
     virtual void Init(int argc, char **argv);
     virtual void Shutdown();
-    virtual uint64_t SubmitMessage(std::string label, unsigned char *data, uint32_t length);
+    virtual void SubmitMessage(std::string label, unsigned char *data, uint32_t length);
   };
 }
 }

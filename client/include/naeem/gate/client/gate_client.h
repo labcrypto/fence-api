@@ -10,26 +10,12 @@ namespace gate {
 namespace client {
   class GateClient {
   public:
-    GateClient(std::string host, uint16_t port)
-      : host_(host),
-        port_(port) {
-    }
-    virtual ~GateClient() {
-    }
-  public:
-    inline std::string GetHost() const {
-      return host_;
-    }
-    inline uint16_t GetPort() const {
-      return port_;
-    }
+    GateClient() {}
+    virtual ~GateClient() {}
   public:
     virtual void Init(int agrc = 0, char **argv = NULL) = 0;
     virtual void Shutdown() = 0;
-    virtual uint64_t SubmitMessage(std::string label, unsigned char *data, uint32_t length) = 0;
-  protected:
-    std::string host_;
-    uint16_t port_;
+    virtual void SubmitMessage(std::string label, unsigned char *data, uint32_t length) = 0;
   };
 }
 }

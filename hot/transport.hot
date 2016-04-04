@@ -6,9 +6,10 @@ module ir.ntnaeem.gate.transport {
     202 = PoppedButNotAcked;
     203 = PoppedAndAcked;
     204 = EnqueuedForTransmission;
-    205 = ReadyForRetrieval;
-    206 = RetrievedButNotAcked;
-    207 = RetrievedAndAcked;
+    205 = EnqueueFailed;
+    206 = ReadyForRetrieval;
+    207 = RetrievedButNotAcked;
+    208 = RetrievedAndAcked;
   };
   struct EnqueueReport {
     uint64 masterMId ord(1);
