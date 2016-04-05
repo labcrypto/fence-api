@@ -17,7 +17,7 @@ namespace client {
   public:
     virtual void Init(int argc, char **argv);
     virtual void Shutdown();
-    virtual void SubmitMessage(std::string label, unsigned char *data, uint32_t length);
+    virtual uint64_t SubmitMessage(std::string label, unsigned char *data, uint32_t length);
   };
 }
 }
