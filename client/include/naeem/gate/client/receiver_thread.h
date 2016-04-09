@@ -1,30 +1,30 @@
-#ifndef _NAEEM_GATE__CLIENT__SUBMITTER_THREAD_H_
-#define _NAEEM_GATE__CLIENT__SUBMITTER_THREAD_H_
+#ifndef _NAEEM_GATE__CLIENT__RECEIVER_THREAD_H_
+#define _NAEEM_GATE__CLIENT__RECEIVER_THREAD_H_
 
 
 namespace naeem {
 namespace gate {
 namespace client {
-  class SubmitterThread {
+  class ReceiverThread {
   public:
-    SubmitterThread (
+    ReceiverThread (
       std::string gateHost,
       uint16_t gatePort,
-      std::string enqueueLabel,
+      std::string popLabel,
       std::string workDirPath
     ) : gatePort_(gatePort),
         gateHost_(gateHost),
-        enqueueLabel_(enqueueLabel),
+        popLabel_(popLabel),
         workDirPath_(workDirPath) {
     }
-    virtual ~SubmitterThread() {}
+    virtual ~ReceiverThread() {}
   public:
     virtual void Start();
     static void* ThreadBody(void *);
   private:
     uint16_t gatePort_;
     std::string gateHost_;
-    std::string enqueueLabel_;
+    std::string popLabel_;
     std::string workDirPath_;
   };
 }
