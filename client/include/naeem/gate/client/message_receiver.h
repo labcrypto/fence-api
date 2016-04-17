@@ -7,6 +7,7 @@
 #include <string>
 
 #include "message.h"
+#include "runtime.h"
 
 
 namespace naeem {
@@ -22,7 +23,8 @@ namespace client {
     ) : gatePort_(gatePort),
         gateHost_(gateHost),
         popLabel_(popLabel),
-        workDirPath_(workDirPath) {
+        workDirPath_(workDirPath),
+        runtime_(NULL) {
     }
     virtual ~MessageReceiver() {}
   public:
@@ -51,11 +53,20 @@ namespace client {
     Ack (
       std::vector<uint64_t> ids
     ) = 0;
+    virtual void
+    Ack (
+      uint64_t id
+    ) {
+      std::vector<uint64_t> ids;
+      ids.push_back(id);
+      Ack(ids);
+    }
   protected:
     uint16_t gatePort_;
     std::string gateHost_;
     std::string popLabel_;
     std::string workDirPath_;
+    Runtime *runtime_;
   };
 }
 }

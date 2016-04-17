@@ -7,6 +7,7 @@
 #include <string>
 
 #include "message.h"
+#include "runtime.h"
 
 
 namespace naeem {
@@ -22,7 +23,8 @@ namespace client {
     ) : gatePort_(gatePort),
         gateHost_(gateHost),
         enqueueLabel_(enqueueLabel),
-        workDirPath_(workDirPath) {
+        workDirPath_(workDirPath),
+        runtime_(NULL) {
     }
     virtual ~MessageSubmitter() {}
   public:
@@ -61,6 +63,7 @@ namespace client {
     std::string gateHost_;
     std::string enqueueLabel_;
     std::string workDirPath_;
+    Runtime *runtime_;
   };
 }
 }
