@@ -5,25 +5,24 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Argument;
-import ir.ntnaeem.hottentot.runtime.Proxy;
-import ir.ntnaeem.hottentot.runtime.Request;
-import ir.ntnaeem.hottentot.runtime.Response;
-import ir.ntnaeem.hottentot.runtime.TcpClient;
-import ir.ntnaeem.hottentot.runtime.exception.HottentotRuntimeException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientConnectException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientReadException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientWriteException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientCloseException;
-import ir.ntnaeem.hottentot.runtime.factory.ProtocolFactory;
-import ir.ntnaeem.hottentot.runtime.factory.TcpClientFactory;
-import ir.ntnaeem.hottentot.runtime.protocol.Protocol;
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.type.*;
-import java.util.List;
+import java.util.*;
+
+import org.labcrypto.hottentot.runtime.Argument;
+import org.labcrypto.hottentot.runtime.Proxy;
+import org.labcrypto.hottentot.runtime.Request;
+import org.labcrypto.hottentot.runtime.Response;
+import org.labcrypto.hottentot.runtime.TcpClient;
+import org.labcrypto.hottentot.runtime.exception.HottentotRuntimeException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientConnectException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientReadException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientWriteException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientCloseException;
+import org.labcrypto.hottentot.runtime.factory.ProtocolFactory;
+import org.labcrypto.hottentot.runtime.factory.TcpClientFactory;
+import org.labcrypto.hottentot.runtime.protocol.Protocol;
+
 
 public class GateServiceProxy extends AbstractGateService implements Proxy {
 	
@@ -40,8 +39,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(1548427490L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(3903399507L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -50,7 +49,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate messageDataLength
+    // calulate messageDataLength
     int messageDataLength= serializedMessage.length;
     int messageDataLengthByteArrayLength = 1;
     if (messageDataLength >= 0x80) {
@@ -66,25 +65,25 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += messageDataLength + messageDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
       throw new HottentotRuntimeException(e);
     }
-    //read response from server
+    // read response from server
     byte[] buffer = new byte[256];
     while (!protocol.isResponseComplete()) {
       byte[] dataChunkRead;
@@ -96,7 +95,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       protocol.processDataForResponse(dataChunkRead);
     }
     Response response = protocol.getResponse();
-    //close everything
+    // close everything
      try { 
        tcpClient.close(); 
     } catch (TcpClientCloseException e) { 
@@ -117,8 +116,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(118643832L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(3843562469L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -127,7 +126,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate idDataLength
+    // calulate idDataLength
     int idDataLength= serializedId.length;
     int idDataLengthByteArrayLength = 1;
     if (idDataLength >= 0x80) {
@@ -143,25 +142,25 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += idDataLength + idDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
       throw new HottentotRuntimeException(e);
     }
-    //read response from server
+    // read response from server
     byte[] buffer = new byte[256];
     while (!protocol.isResponseComplete()) {
       byte[] dataChunkRead;
@@ -173,7 +172,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       protocol.processDataForResponse(dataChunkRead);
     }
     Response response = protocol.getResponse();
-    //close everything
+    // close everything
      try { 
        tcpClient.close(); 
     } catch (TcpClientCloseException e) { 
@@ -194,8 +193,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(3250188767L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(4079569996L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -204,7 +203,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate idDataLength
+    // calulate idDataLength
     int idDataLength= serializedId.length;
     int idDataLengthByteArrayLength = 1;
     if (idDataLength >= 0x80) {
@@ -220,19 +219,19 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += idDataLength + idDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
@@ -246,8 +245,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(2484924834L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(2052745702L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -256,7 +255,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate labelDataLength
+    // calulate labelDataLength
     int labelDataLength= serializedLabel.length;
     int labelDataLengthByteArrayLength = 1;
     if (labelDataLength >= 0x80) {
@@ -272,25 +271,25 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += labelDataLength + labelDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
       throw new HottentotRuntimeException(e);
     }
-    //read response from server
+    // read response from server
     byte[] buffer = new byte[256];
     while (!protocol.isResponseComplete()) {
       byte[] dataChunkRead;
@@ -302,7 +301,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       protocol.processDataForResponse(dataChunkRead);
     }
     Response response = protocol.getResponse();
-    //close everything
+    // close everything
      try { 
        tcpClient.close(); 
     } catch (TcpClientCloseException e) { 
@@ -323,8 +322,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(3070562612L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(707805524L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -333,7 +332,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate labelDataLength
+    // calulate labelDataLength
     int labelDataLength= serializedLabel.length;
     int labelDataLengthByteArrayLength = 1;
     if (labelDataLength >= 0x80) {
@@ -349,25 +348,25 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += labelDataLength + labelDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
       throw new HottentotRuntimeException(e);
     }
-    //read response from server
+    // read response from server
     byte[] buffer = new byte[256];
     while (!protocol.isResponseComplete()) {
       byte[] dataChunkRead;
@@ -379,7 +378,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       protocol.processDataForResponse(dataChunkRead);
     }
     Response response = protocol.getResponse();
-    //close everything
+    // close everything
      try { 
        tcpClient.close(); 
     } catch (TcpClientCloseException e) { 
@@ -401,8 +400,8 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
 
     //make request
     Request request = new Request();
-    request.setServiceId(58024360L);
-    request.setMethodId(3312297367L);
+    request.setServiceId(2590780894L);
+    request.setMethodId(1588665081L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -411,7 +410,7 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate idDataLength
+    // calulate idDataLength
     int idDataLength= serializedId.length;
     int idDataLengthByteArrayLength = 1;
     if (idDataLength >= 0x80) {
@@ -427,19 +426,19 @@ public class GateServiceProxy extends AbstractGateService implements Proxy {
       }
     }
     dataLength += idDataLength + idDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {

@@ -5,31 +5,30 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Argument;
-import ir.ntnaeem.hottentot.runtime.Request;
-import ir.ntnaeem.hottentot.runtime.RequestHandler;
-import ir.ntnaeem.hottentot.runtime.Response;
-import ir.ntnaeem.hottentot.runtime.Service;
-import ir.ntnaeem.hottentot.runtime.exception.MethodNotSupportException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientConnectException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientReadException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientWriteException;
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
 import java.util.List;
+
+import org.labcrypto.hottentot.runtime.Argument;
+import org.labcrypto.hottentot.runtime.Request;
+import org.labcrypto.hottentot.runtime.RequestHandler;
+import org.labcrypto.hottentot.runtime.Response;
+import org.labcrypto.hottentot.runtime.Service;
+import org.labcrypto.hottentot.runtime.config.Config;
+import org.labcrypto.hottentot.runtime.exception.TcpClientConnectException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientReadException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientWriteException;
+
 
 public class GateTestRequestHandler extends RequestHandler {
   public GateTestRequestHandler(Service service) {
     super(service);
   }
   @Override
-  public Response handleRequest(Request request) throws TcpClientWriteException, TcpClientReadException, TcpClientConnectException, MethodNotSupportException {
+  public Response handleRequest(Request request) throws TcpClientWriteException, TcpClientReadException, TcpClientConnectException {
     long methodId = request.getMethodId();
     GateTestService gateTestImpl = (AbstractGateTestService) service;
-
-    if(methodId == 2884821429L){
+    if(methodId == 1300055394L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedMessage = arg0.getData();
@@ -44,6 +43,13 @@ public class GateTestRequestHandler extends RequestHandler {
       return response;
     }
 
-    throw new MethodNotSupportException("method id is incorrect");
+    Response response = new Response();
+    response.setStatusCode((byte) 255);
+    response.setData(new byte[]{0});
+    response.setLength(2);
+    if(Config.isVerboseMode){
+      System.out.println("WARN : method id is incorrect");
+    }
+    return response;
   }
 }

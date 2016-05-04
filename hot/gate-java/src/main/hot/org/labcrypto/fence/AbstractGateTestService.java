@@ -5,15 +5,16 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.RequestHandler;
+import org.labcrypto.hottentot.runtime.RequestHandler;
+
 
 public abstract class AbstractGateTestService implements GateTestService {	
   public RequestHandler makeRequestHandler() {
     return new GateTestRequestHandler(this);
   }
   public long getServiceId() {
-    return 3053859651L;
+    return 1988326604L;
   }
 }

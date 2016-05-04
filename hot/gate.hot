@@ -1,4 +1,4 @@
-module ir.ntnaeem.gate {
+module org.labcrypto.fence {
   enum MessageStatus {
     0 = Unknown;
     100 = EnqueuedForTransmission;

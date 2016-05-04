@@ -5,16 +5,18 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen.server;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Service;
-import ir.ntnaeem.hottentot.runtime.ServiceRuntime;
 import java.io.IOException;
 
-public class Main {
+import org.labcrypto.hottentot.runtime.Service;
+import org.labcrypto.hottentot.runtime.ServiceRuntime;
+
+
+public class SampleServer {
   public static void main(String[] args) throws IOException {
-    ir.ntnaeem.hottentot.runtime.config.Config.setMainArgs(args);
-    ir.ntnaeem.hottentot.runtime.config.Config.setConfigPropertiesFromConfigFile();
+    org.labcrypto.hottentot.runtime.config.Config.setMainArgs(args);
+    org.labcrypto.hottentot.runtime.config.Config.setConfigPropertiesFromConfigFile();
     ServiceRuntime serviceRuntime = new ServiceRuntime();
     Service gateService = new GateImpl();
     serviceRuntime.register("127.0.0.1",8080, gateService);

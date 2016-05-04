@@ -1,4 +1,4 @@
-module ir.ntnaeem.gate.transport {
+module org.labcrypto.fence.transport {
   enum TransportMessageStatus {
     0 = Unknown;
     200 = Arrived;

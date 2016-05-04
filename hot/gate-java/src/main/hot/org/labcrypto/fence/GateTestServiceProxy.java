@@ -5,25 +5,24 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Argument;
-import ir.ntnaeem.hottentot.runtime.Proxy;
-import ir.ntnaeem.hottentot.runtime.Request;
-import ir.ntnaeem.hottentot.runtime.Response;
-import ir.ntnaeem.hottentot.runtime.TcpClient;
-import ir.ntnaeem.hottentot.runtime.exception.HottentotRuntimeException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientConnectException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientReadException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientWriteException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientCloseException;
-import ir.ntnaeem.hottentot.runtime.factory.ProtocolFactory;
-import ir.ntnaeem.hottentot.runtime.factory.TcpClientFactory;
-import ir.ntnaeem.hottentot.runtime.protocol.Protocol;
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.type.*;
-import java.util.List;
+import java.util.*;
+
+import org.labcrypto.hottentot.runtime.Argument;
+import org.labcrypto.hottentot.runtime.Proxy;
+import org.labcrypto.hottentot.runtime.Request;
+import org.labcrypto.hottentot.runtime.Response;
+import org.labcrypto.hottentot.runtime.TcpClient;
+import org.labcrypto.hottentot.runtime.exception.HottentotRuntimeException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientConnectException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientReadException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientWriteException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientCloseException;
+import org.labcrypto.hottentot.runtime.factory.ProtocolFactory;
+import org.labcrypto.hottentot.runtime.factory.TcpClientFactory;
+import org.labcrypto.hottentot.runtime.protocol.Protocol;
+
 
 public class GateTestServiceProxy extends AbstractGateTestService implements Proxy {
 	
@@ -40,8 +39,8 @@ public class GateTestServiceProxy extends AbstractGateTestService implements Pro
 
     //make request
     Request request = new Request();
-    request.setServiceId(3053859651L);
-    request.setMethodId(2884821429L);
+    request.setServiceId(1988326604L);
+    request.setMethodId(1300055394L);
     request.setArgumentCount((byte) 1);
     request.setType(Request.RequestType.InvokeStateless);
     Argument arg0 = new Argument();
@@ -50,7 +49,7 @@ public class GateTestServiceProxy extends AbstractGateTestService implements Pro
     request.addArgument(arg0);
     int dataLength = 0;
     //calculate data length for every argument
-    //calulate messageDataLength
+    // calulate messageDataLength
     int messageDataLength= serializedMessage.length;
     int messageDataLengthByteArrayLength = 1;
     if (messageDataLength >= 0x80) {
@@ -66,25 +65,25 @@ public class GateTestServiceProxy extends AbstractGateTestService implements Pro
       }
     }
     dataLength += messageDataLength + messageDataLengthByteArrayLength;
-    //arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
+    // arg count(1) + request type(1) + method ID(4) + service ID(4) = 10;
     request.setLength(10 + dataLength);
-    //connect to server
+    // connect to server
     TcpClient tcpClient = TcpClientFactory.create();
     try{
       tcpClient.connect(host, port);
     } catch (TcpClientConnectException e) {
       throw new HottentotRuntimeException(e);
     }
-    //serialize request according to HTNP
+    // serialize request according to HTNP
     Protocol protocol = ProtocolFactory.create();
     byte[] serializedRequest = protocol.serializeRequest(request);
-    //send request
+    // send request
     try {
       tcpClient.write(serializedRequest);
     } catch (TcpClientWriteException e) {
       throw new HottentotRuntimeException(e);
     }
-    //read response from server
+    // read response from server
     byte[] buffer = new byte[256];
     while (!protocol.isResponseComplete()) {
       byte[] dataChunkRead;
@@ -96,7 +95,7 @@ public class GateTestServiceProxy extends AbstractGateTestService implements Pro
       protocol.processDataForResponse(dataChunkRead);
     }
     Response response = protocol.getResponse();
-    //close everything
+    // close everything
      try { 
        tcpClient.close(); 
     } catch (TcpClientCloseException e) { 

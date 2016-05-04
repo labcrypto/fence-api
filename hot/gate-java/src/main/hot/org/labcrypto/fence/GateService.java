@@ -6,10 +6,12 @@
  *   
  ******************************************************************/
 
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Service;
-import java.util.List;
+import java.util.*;
+
+import org.labcrypto.hottentot.runtime.Service;
+
 
 public interface GateService extends Service {
   long enqueue(Message message);

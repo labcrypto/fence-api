@@ -5,31 +5,30 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.runtime.Argument;
-import ir.ntnaeem.hottentot.runtime.Request;
-import ir.ntnaeem.hottentot.runtime.RequestHandler;
-import ir.ntnaeem.hottentot.runtime.Response;
-import ir.ntnaeem.hottentot.runtime.Service;
-import ir.ntnaeem.hottentot.runtime.exception.MethodNotSupportException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientConnectException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientReadException;
-import ir.ntnaeem.hottentot.runtime.exception.TcpClientWriteException;
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
 import java.util.List;
+
+import org.labcrypto.hottentot.runtime.Argument;
+import org.labcrypto.hottentot.runtime.Request;
+import org.labcrypto.hottentot.runtime.RequestHandler;
+import org.labcrypto.hottentot.runtime.Response;
+import org.labcrypto.hottentot.runtime.Service;
+import org.labcrypto.hottentot.runtime.config.Config;
+import org.labcrypto.hottentot.runtime.exception.TcpClientConnectException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientReadException;
+import org.labcrypto.hottentot.runtime.exception.TcpClientWriteException;
+
 
 public class GateRequestHandler extends RequestHandler {
   public GateRequestHandler(Service service) {
     super(service);
   }
   @Override
-  public Response handleRequest(Request request) throws TcpClientWriteException, TcpClientReadException, TcpClientConnectException, MethodNotSupportException {
+  public Response handleRequest(Request request) throws TcpClientWriteException, TcpClientReadException, TcpClientConnectException {
     long methodId = request.getMethodId();
     GateService gateImpl = (AbstractGateService) service;
-
-    if(methodId == 1548427490L){
+    if(methodId == 3903399507L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedMessage = arg0.getData();
@@ -43,7 +42,7 @@ public class GateRequestHandler extends RequestHandler {
       response.setLength(serializedResult.length + 1);
       return response;
     }
-    if(methodId == 118643832L){
+    if(methodId == 3843562469L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedId = arg0.getData();
@@ -56,7 +55,7 @@ public class GateRequestHandler extends RequestHandler {
       response.setLength(serializedResult.length + 1);
       return response;
     }
-    if(methodId == 3250188767L){
+    if(methodId == 4079569996L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedId = arg0.getData();
@@ -68,7 +67,7 @@ public class GateRequestHandler extends RequestHandler {
       response.setLength(0);
       return response;
     }
-    if(methodId == 2484924834L){
+    if(methodId == 2052745702L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedLabel = arg0.getData();
@@ -81,7 +80,7 @@ public class GateRequestHandler extends RequestHandler {
       response.setLength(serializedResult.length + 1);
       return response;
     }
-    if(methodId == 3070562612L){
+    if(methodId == 707805524L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedLabel = arg0.getData();
@@ -100,7 +99,7 @@ public class GateRequestHandler extends RequestHandler {
       response.setLength(serializedMessage.length + 1);
       return response;
     }
-    if(methodId == 3312297367L){
+    if(methodId == 1588665081L){
       List <Argument> args = request.getArgs();
       Argument arg0 = args.get(0);
       byte[] serializedId = arg0.getData();
@@ -113,6 +112,13 @@ public class GateRequestHandler extends RequestHandler {
       return response;
     }
 
-    throw new MethodNotSupportException("method id is incorrect");
+    Response response = new Response();
+    response.setStatusCode((byte) 255);
+    response.setData(new byte[]{0});
+    response.setLength(2);
+    if(Config.isVerboseMode){
+      System.out.println("WARN : method id is incorrect");
+    }
+    return response;
   }
 }

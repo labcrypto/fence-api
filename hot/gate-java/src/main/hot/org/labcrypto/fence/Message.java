@@ -5,11 +5,14 @@
  * Description:
  *   This file contains definition of an abstract service class.
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.serializerHelper.ByteArrayToInteger;
+import java.util.*;
+
+import org.labcrypto.hottentot.helper.PDTSerializer;
+import org.labcrypto.hottentot.helper.PDTDeserializer;
+import org.labcrypto.hottentot.helper.ByteArrayToInteger;
+
 
 public class Message {
   private long id;
@@ -93,12 +96,12 @@ public class Message {
     setRelId(PDTDeserializer.getInt64(relIdByteArray));
     //label : String
     dataLength = 0;
-    if(( serializedByteArray[counter] & 0x80) == 0 ) {
+    if (( serializedByteArray[counter] & 0x80) == 0 ) {
       dataLength = serializedByteArray[counter++];
-    }else{
+    } else {
       numbersOfBytesForDataLength = serializedByteArray[counter++] & 0x0f;
       byte[] serializedByteArrayLength = new byte[numbersOfBytesForDataLength];
-      for(byte i = 0 ; i < numbersOfBytesForDataLength ; i++){
+      for (byte i = 0; i < numbersOfBytesForDataLength; i++) {
         serializedByteArrayLength[i] = serializedByteArray[counter++];
       }
       dataLength = ByteArrayToInteger.getInt(serializedByteArrayLength);
@@ -108,21 +111,11 @@ public class Message {
     counter += dataLength;
     setLabel(PDTDeserializer.getString(labelByteArray));
     //content : byte[]
-    dataLength = 0;
-    if(( serializedByteArray[counter] & 0x80) == 0 ) {
-      dataLength = serializedByteArray[counter++];
-    }else{
-      numbersOfBytesForDataLength = serializedByteArray[counter++] & 0x0f;
-      byte[] serializedByteArrayLength = new byte[numbersOfBytesForDataLength];
-      for(byte i = 0 ; i < numbersOfBytesForDataLength ; i++){
-        serializedByteArrayLength[i] = serializedByteArray[counter++];
-      }
-      dataLength = ByteArrayToInteger.getInt(serializedByteArrayLength);
+    byte[] contentByteArray = new byte[4294967295];
+    for(int i = 0 ; i < 4294967295 ; i++){
+      contentByteArray[i] = serializedByteArray[counter++];
     }
-    byte[] contentByteArray = new byte[dataLength];
-    System.arraycopy(serializedByteArray,counter,contentByteArray,0,dataLength);
-    counter += dataLength;
-    setContent(contentByteArray);
+    setContent(PDTDeserializer.getData(contentByteArray));
 
     }
   }

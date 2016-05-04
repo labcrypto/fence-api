@@ -5,10 +5,11 @@
  * Description:
  *   This file contains definition of an abstract service class.
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
-import ir.ntnaeem.hottentot.serializerHelper.PDTDeserializer;
-import ir.ntnaeem.hottentot.serializerHelper.PDTSerializer;
+import org.labcrypto.hottentot.helper.PDTDeserializer;
+import org.labcrypto.hottentot.helper.PDTSerializer;
+
 
 public enum MessageStatus {
 

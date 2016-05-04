@@ -5,20 +5,22 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen.client;
-
-import ir.ntnaeem.gate.hotgen.GateService;
-import ir.ntnaeem.gate.hotgen.GateServiceProxyBuilder;
-import ir.ntnaeem.gate.hotgen.GateMonitorService;
-import ir.ntnaeem.gate.hotgen.GateMonitorServiceProxyBuilder;
-import ir.ntnaeem.gate.hotgen.GateTestService;
-import ir.ntnaeem.gate.hotgen.GateTestServiceProxyBuilder;
+package org.labcrypto.fence;
 
 import java.io.IOException;
 
-public class Main {
+import org.labcrypto.fence.GateService;
+import org.labcrypto.fence.GateServiceProxyBuilder;
+import org.labcrypto.fence.GateMonitorService;
+import org.labcrypto.fence.GateMonitorServiceProxyBuilder;
+import org.labcrypto.fence.GateTestService;
+import org.labcrypto.fence.GateTestServiceProxyBuilder;
+
+
+
+public class SampleClient {
   public static void main(String[] args) throws IOException {
-    ir.ntnaeem.hottentot.runtime.config.Config.setMainArgs(args);
+    org.labcrypto.hottentot.runtime.config.Config.setMainArgs(args);
     final GateService gateProxy = GateServiceProxyBuilder.create("127.0.0.1", 8080);
     final GateMonitorService gatemonitorProxy = GateMonitorServiceProxyBuilder.create("127.0.0.1", 8080);
     final GateTestService gatetestProxy = GateTestServiceProxyBuilder.create("127.0.0.1", 8080);

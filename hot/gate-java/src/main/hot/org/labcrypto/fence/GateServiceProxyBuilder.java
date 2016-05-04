@@ -5,7 +5,7 @@
  * Description:
  *   
  ******************************************************************/
-package ir.ntnaeem.gate.hotgen;
+package org.labcrypto.fence;
 
 public class GateServiceProxyBuilder {
 
