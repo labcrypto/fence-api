@@ -1,12 +1,13 @@
-#ifndef _NAEEM_GATE__CLIENT__DEFAULT_MESSAGE_SUBMITTER_H_
-#define _NAEEM_GATE__CLIENT__DEFAULT_MESSAGE_SUBMITTER_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__DEFAULT_MESSAGE_SUBMITTER_H_
+#define _ORG_LABCRYPTO__FENCE__CLIENT__DEFAULT_MESSAGE_SUBMITTER_H_
 
 #include "message_submitter.h"
 #include "submitter_thread.h"
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
   class DefaultMessageSubmitter : public MessageSubmitter {
   public:
@@ -45,6 +46,7 @@ namespace client {
   private:
     SubmitterThread *submitterThread_;
   };
+}
 }
 }
 }

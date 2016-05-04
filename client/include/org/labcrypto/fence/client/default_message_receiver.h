@@ -1,12 +1,13 @@
-#ifndef _NAEEM_GATE__CLIENT__DEFAULT_MESSAGE_RECEIVER_H_
-#define _NAEEM_GATE__CLIENT__DEFAULT_MESSAGE_RECEIVER_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__DEFAULT_MESSAGE_RECEIVER_H_
+#define _ORG_LABCRYPTO__FENCE__CLIENT__DEFAULT_MESSAGE_RECEIVER_H_
 
 #include "message_receiver.h"
 #include "receiver_thread.h"
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
   class DefaultMessageReceiver : public MessageReceiver {
   public:

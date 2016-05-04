@@ -1,5 +1,5 @@
-#ifndef _NAEEM_GATE__CLIENT__RECEIVER_THREAD_H_
-#define _NAEEM_GATE__CLIENT__RECEIVER_THREAD_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__SUBMITTER_THREAD_H_
+#define _ORG_LABCRYPTO__FENCE__CLIENT__SUBMITTER_THREAD_H_
 
 #include <string>
 #include <mutex>
@@ -7,26 +7,27 @@
 #include "runtime.h"
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
-  class ReceiverThread {
+  class SubmitterThread {
   public:
-    ReceiverThread (
+    SubmitterThread (
       std::string gateHost,
       uint16_t gatePort,
-      std::string popLabel,
+      std::string enqueueLabel,
       std::string workDirPath,
       Runtime *runtime
     ) : gatePort_(gatePort),
         gateHost_(gateHost),
-        popLabel_(popLabel),
+        enqueueLabel_(enqueueLabel),
         workDirPath_(workDirPath),
         terminated_(false),
         threadTerminated_(false),
         runtime_(runtime) {
     }
-    virtual ~ReceiverThread() {}
+    virtual ~SubmitterThread() {}
   public:
     virtual void Start();
     virtual void Shutdown();
@@ -34,7 +35,7 @@ namespace client {
   private:
     uint16_t gatePort_;
     std::string gateHost_;
-    std::string popLabel_;
+    std::string enqueueLabel_;
     std::string workDirPath_;
     bool terminated_;
     bool threadTerminated_;
@@ -44,4 +45,6 @@ namespace client {
 }
 }
 }
+}
+
 #endif

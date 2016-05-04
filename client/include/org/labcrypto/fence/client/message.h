@@ -1,5 +1,5 @@
-#ifndef _NAEEM_GATE__CLIENT__MESSAGE_H_
-#define _NAEEM_GATE__CLIENT__MESSAGE_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__MESSAGE_H_
+#define _ORG_LABCRYPTO__FENCE__CLIENT__MESSAGE_H_
 
 #include <stdint.h>
 
@@ -9,8 +9,9 @@
 #include "byte_array.h"
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
   class Message {
   public:
@@ -60,6 +61,7 @@ namespace client {
     std::string label_;
     ByteArray content_;
   };
+}
 }
 }
 }

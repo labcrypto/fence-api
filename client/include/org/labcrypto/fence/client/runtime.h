@@ -1,5 +1,5 @@
-#ifndef _NAEEM_GATE__CLIENT__RUNTIME_H_
-#define _NAEEM_GATE__CLIENT__RUNTIME_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__RUNTIME_H_
+#define _ORG_LABCRYPTO__FENCE__CLIENT__RUNTIME_H_
 
 #include <mutex>
 #include <deque>
@@ -7,8 +7,9 @@
 #include <unistd.h>
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
   class Runtime {
   public:
@@ -42,11 +43,6 @@ namespace client {
     }
   public:
     bool initialized_;
-    // static bool termSignal_;
-    // static bool submitterThreadTerminated_;
-    // static bool receiverThreadTerminated_;
-
-    // static std::mutex termSignalLock_;
     std::mutex messageIdCounterLock_;
     std::mutex mainLock_;
 
@@ -60,4 +56,6 @@ namespace client {
 }
 }
 }
+}
+
 #endif

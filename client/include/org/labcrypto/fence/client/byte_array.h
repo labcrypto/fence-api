@@ -1,5 +1,5 @@
-#ifndef _NAEEM_GATE__CLIENT__BYTE_ARRAY_H_
-#define _NAEEM_GATE__CLIENT__BYTE_ARRAY_H_
+#ifndef _ORG_LABCRYPTO__FENCE__CLIENT__BYTE_ARRAY_H_
+#define _ORG_LABCRYPTO__FENCE_GATE__CLIENT__BYTE_ARRAY_H_
 
 #include <stdint.h>
 
@@ -7,8 +7,9 @@
 #include <string>
 
 
-namespace naeem {
-namespace gate {
+namespace org {
+namespace labcrypto {
+namespace fence {
 namespace client {
   class ByteArray {
   public:
@@ -90,6 +91,7 @@ namespace client {
     unsigned char *data_;
     uint32_t length_;
   };
+}
 }
 }
 }
