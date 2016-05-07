@@ -18,12 +18,12 @@ public class SampleServer {
     org.labcrypto.hottentot.runtime.config.Config.setMainArgs(args);
     org.labcrypto.hottentot.runtime.config.Config.setConfigPropertiesFromConfigFile();
     ServiceRuntime serviceRuntime = new ServiceRuntime();
-    Service gateService = new GateImpl();
-    serviceRuntime.register("127.0.0.1",8080, gateService);
-    Service gatemonitorService = new GateMonitorImpl();
-    serviceRuntime.register("127.0.0.1",8080, gatemonitorService);
-    Service gatetestService = new GateTestImpl();
-    serviceRuntime.register("127.0.0.1",8080, gatetestService);
+    Service fenceService = new FenceImpl();
+    serviceRuntime.register("127.0.0.1",8080, fenceService);
+    Service fencemonitorService = new FenceMonitorImpl();
+    serviceRuntime.register("127.0.0.1",8080, fencemonitorService);
+    Service fencetestService = new FenceTestImpl();
+    serviceRuntime.register("127.0.0.1",8080, fencetestService);
 
     serviceRuntime.start();
   }

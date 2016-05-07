@@ -37,7 +37,7 @@ module org.labcrypto.fence {
     string label ord(3);
     data content ord(4);
   };
-  stateless service Gate {
+  stateless service Fence {
     uint64 enqueue(Message message);
     uint16 getStatus(uint64 id);
     void discard(uint64 id);
@@ -45,10 +45,10 @@ module org.labcrypto.fence {
     Message popNext(string label);
     void ack(uint64 id);
   };
-  stateless service GateMonitor {
+  stateless service FenceMonitor {
     string getCurrentStat();
   };
-  stateless service GateTest {
+  stateless service FenceTest {
     uint64 enqueueAsIncomingMessage(Message message);
   };
 };

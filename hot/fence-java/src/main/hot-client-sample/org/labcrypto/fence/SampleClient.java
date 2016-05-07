@@ -9,21 +9,21 @@ package org.labcrypto.fence;
 
 import java.io.IOException;
 
-import org.labcrypto.fence.GateService;
-import org.labcrypto.fence.GateServiceProxyBuilder;
-import org.labcrypto.fence.GateMonitorService;
-import org.labcrypto.fence.GateMonitorServiceProxyBuilder;
-import org.labcrypto.fence.GateTestService;
-import org.labcrypto.fence.GateTestServiceProxyBuilder;
+import org.labcrypto.fence.FenceService;
+import org.labcrypto.fence.FenceServiceProxyBuilder;
+import org.labcrypto.fence.FenceMonitorService;
+import org.labcrypto.fence.FenceMonitorServiceProxyBuilder;
+import org.labcrypto.fence.FenceTestService;
+import org.labcrypto.fence.FenceTestServiceProxyBuilder;
 
 
 
 public class SampleClient {
   public static void main(String[] args) throws IOException {
     org.labcrypto.hottentot.runtime.config.Config.setMainArgs(args);
-    final GateService gateProxy = GateServiceProxyBuilder.create("127.0.0.1", 8080);
-    final GateMonitorService gatemonitorProxy = GateMonitorServiceProxyBuilder.create("127.0.0.1", 8080);
-    final GateTestService gatetestProxy = GateTestServiceProxyBuilder.create("127.0.0.1", 8080);
+    final FenceService fenceProxy = FenceServiceProxyBuilder.create("127.0.0.1", 8080);
+    final FenceMonitorService fencemonitorProxy = FenceMonitorServiceProxyBuilder.create("127.0.0.1", 8080);
+    final FenceTestService fencetestProxy = FenceTestServiceProxyBuilder.create("127.0.0.1", 8080);
 
     //use server methods on proxies
   }
