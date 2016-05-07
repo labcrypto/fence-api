@@ -21,10 +21,10 @@
 #  SOFTWARE.
 #
 
-rm -rf gate
+rm -rf fence
 rm -rf transport
-rm -rf gate-java
+rm -rf fence-java
 
-hot --out gate --cc --makefile --stub --client gate.hot
+hot --out fence --cc --makefile --stub --client fence.hot
 hot --out transport --cc --makefile --stub --client transport.hot
-hot --out gate-java --java gate.hot
+hot --out fence-java --java fence.hot
