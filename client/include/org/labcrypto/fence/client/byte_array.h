@@ -114,9 +114,9 @@ namespace client {
     unsigned char *data_;
     uint32_t length_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

@@ -40,12 +40,12 @@ namespace client {
   class MessageReceiver {
   public:
     MessageReceiver (
-      std::string gateHost,
-      uint16_t gatePort,
+      std::string fenceHost,
+      uint16_t fencePort,
       std::string popLabel,
       std::string workDirPath
-    ) : gatePort_(gatePort),
-        gateHost_(gateHost),
+    ) : fencePort_(fencePort),
+        fenceHost_(fenceHost),
         popLabel_(popLabel),
         workDirPath_(workDirPath),
         runtime_(NULL) {
@@ -53,10 +53,10 @@ namespace client {
     virtual ~MessageReceiver() {}
   public:
     inline uint16_t GetGatePort() const {
-      return gatePort_;
+      return fencePort_;
     }
     inline std::string GetGateHost() {
-      return gateHost_;
+      return fenceHost_;
     }
     inline std::string GetPopLabel() {
       return popLabel_;
@@ -86,15 +86,15 @@ namespace client {
       Ack(ids);
     }
   protected:
-    uint16_t gatePort_;
-    std::string gateHost_;
+    uint16_t fencePort_;
+    std::string fenceHost_;
     std::string popLabel_;
     std::string workDirPath_;
     Runtime *runtime_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

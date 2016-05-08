@@ -69,9 +69,9 @@ namespace client {
   private:
     SubmitterThread *submitterThread_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

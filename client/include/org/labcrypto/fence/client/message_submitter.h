@@ -40,12 +40,12 @@ namespace client {
   class MessageSubmitter {
   public:
     MessageSubmitter (
-      std::string gateHost,
-      uint16_t gatePort,
+      std::string fenceHost,
+      uint16_t fencePort,
       std::string enqueueLabel,
       std::string workDirPath
-    ) : gatePort_(gatePort),
-        gateHost_(gateHost),
+    ) : fencePort_(fencePort),
+        fenceHost_(fenceHost),
         enqueueLabel_(enqueueLabel),
         workDirPath_(workDirPath),
         runtime_(NULL) {
@@ -53,10 +53,10 @@ namespace client {
     virtual ~MessageSubmitter() {}
   public:
     inline uint16_t GetGatePort() const {
-      return gatePort_;
+      return fencePort_;
     }
     inline std::string GetGateHost() {
-      return gateHost_;
+      return fenceHost_;
     }
     inline std::string GetEnqueueLabel() {
       return enqueueLabel_;
@@ -83,15 +83,15 @@ namespace client {
       uint32_t length
     ) = 0;
   protected:
-    uint16_t gatePort_;
-    std::string gateHost_;
+    uint16_t fencePort_;
+    std::string fenceHost_;
     std::string enqueueLabel_;
     std::string workDirPath_;
     Runtime *runtime_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

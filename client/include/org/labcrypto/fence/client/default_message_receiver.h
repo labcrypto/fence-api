@@ -71,8 +71,9 @@ namespace client {
     uint32_t ackTimeout_;
     ReceiverThread *receiverThread_;
   };
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

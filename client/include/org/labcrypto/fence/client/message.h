@@ -84,9 +84,9 @@ namespace client {
     std::string label_;
     ByteArray content_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

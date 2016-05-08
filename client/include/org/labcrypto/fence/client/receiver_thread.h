@@ -37,13 +37,13 @@ namespace client {
   class ReceiverThread {
   public:
     ReceiverThread (
-      std::string gateHost,
-      uint16_t gatePort,
+      std::string fenceHost,
+      uint16_t fencePort,
       std::string popLabel,
       std::string workDirPath,
       Runtime *runtime
-    ) : gatePort_(gatePort),
-        gateHost_(gateHost),
+    ) : fencePort_(fencePort),
+        fenceHost_(fenceHost),
         popLabel_(popLabel),
         workDirPath_(workDirPath),
         terminated_(false),
@@ -56,8 +56,8 @@ namespace client {
     virtual void Shutdown();
     static void* ThreadBody(void *);
   private:
-    uint16_t gatePort_;
-    std::string gateHost_;
+    uint16_t fencePort_;
+    std::string fenceHost_;
     std::string popLabel_;
     std::string workDirPath_;
     bool terminated_;
@@ -65,9 +65,9 @@ namespace client {
     std::mutex terminationLock_;
     Runtime *runtime_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif

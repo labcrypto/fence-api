@@ -76,9 +76,9 @@ namespace client {
   private:
     static std::map<std::string, Runtime*> runtimes_;
   };
-}
-}
-}
-}
+} // END NAMESAPCE client
+} // END NAMESPACE fence
+} // END NAMESPACE labcrypto
+} // END NAMESPACE org
 
 #endif
